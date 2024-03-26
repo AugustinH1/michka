@@ -34,10 +34,16 @@ public class BienEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_adresse")
-    private AdresseEntity idAdresse;
+    private AdresseEntity adresse;
 
     @Column(name = "classification")
     private String classification;
+
+    @Column(name = "etage")
+    private Integer etage;
+
+    @Column(name = "num_logement")
+    private Integer numLogement;
 
     @OneToMany(mappedBy = "numBien")
     private Set<AnnexeEntity> annexes = new LinkedHashSet<>();
@@ -101,12 +107,20 @@ public class BienEntity {
         this.typeBien = typeBien;
     }
 
-    public AdresseEntity getIdAdresse() {
-        return idAdresse;
+    public Integer getEtage() {
+        return etage;
     }
 
-    public void setIdAdresse(AdresseEntity idAdresse) {
-        this.idAdresse = idAdresse;
+    public void setEtage(Integer etage) {
+        this.etage = etage;
+    }
+
+    public Integer getNumLogement() {
+        return numLogement;
+    }
+
+    public void setNumLogement(Integer numLogement) {
+        this.numLogement = numLogement;
     }
 
     public String getClassification() {

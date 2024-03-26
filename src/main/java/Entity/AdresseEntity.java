@@ -25,13 +25,7 @@ public class AdresseEntity {
     @Column(name = "ville")
     private String ville;
 
-    @Column(name = "etage")
-    private Integer etage;
-
-    @Column(name = "num_logement")
-    private Integer numLogement;
-
-    @OneToMany(mappedBy = "idAdresse")
+    @OneToMany(mappedBy = "adresse")
     private Set<BienEntity> biens = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -72,22 +66,6 @@ public class AdresseEntity {
 
     public void setVille(String ville) {
         this.ville = ville;
-    }
-
-    public Integer getEtage() {
-        return etage;
-    }
-
-    public void setEtage(Integer etage) {
-        this.etage = etage;
-    }
-
-    public Integer getNumLogement() {
-        return numLogement;
-    }
-
-    public void setNumLogement(Integer numLogement) {
-        this.numLogement = numLogement;
     }
 
     public Set<BienEntity> getBiens() {
