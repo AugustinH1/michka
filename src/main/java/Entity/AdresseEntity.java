@@ -76,4 +76,15 @@ public class AdresseEntity {
         this.biens = biens;
     }
 
+    @Override
+    public String toString() {
+        return "AdresseEntity{" +
+                "id=" + id +
+                ", numRue=" + numRue +
+                ", nomRue='" + nomRue + '\'' +
+                ", codePostal='" + codePostal + '\'' +
+                ", ville='" + ville + '\'' +
+                ", biens=" + biens +
+                '}';
+    }
 }
