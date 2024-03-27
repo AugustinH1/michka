@@ -23,7 +23,6 @@ public class CreationForm extends VBox {
         codePostalField = new TextField();
         villeField = new TextField();
 
-        // Création des étiquettes pour chaque champ
         Label numRueLabel = new Label("Numéro de rue:");
         Label nomRueLabel = new Label("Nom de rue:");
         Label codePostalLabel = new Label("Code postal:");
