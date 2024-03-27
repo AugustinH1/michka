@@ -21,6 +21,12 @@ public class AdresseRepository extends JpaEntityManager {
         return entityManager.find(AdresseEntity.class, id);
     }
 
+    public List<AdresseEntity> findByVille(String ville) {
+        return entityManager.createQuery("SELECT a FROM AdresseEntity a WHERE a.ville = :ville", AdresseEntity.class)
+                .setParameter("ville", ville)
+                .getResultList();
+    }
+
     public void update(AdresseEntity adresse) {
         transaction.begin();
         entityManager.merge(adresse);

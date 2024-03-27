@@ -25,6 +25,17 @@ public class AdresseEntity {
     @Column(name = "ville")
     private String ville;
 
+    public AdresseEntity() {
+        //Do not remove, used by JPA
+    }
+
+    public AdresseEntity(Integer numRue, String nomRue, String codePostal, String ville) {
+        this.numRue = numRue;
+        this.nomRue = nomRue;
+        this.codePostal = codePostal;
+        this.ville = ville;
+    }
+
     @OneToMany(mappedBy = "adresse")
     private Set<BienEntity> biens = new LinkedHashSet<>();
 
