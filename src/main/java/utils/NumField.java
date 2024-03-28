@@ -14,9 +14,9 @@ public class NumField extends TextField {
         });
     }
 
-    public int getValue() {
+    public Integer getValue() {
         if (getText().isEmpty()) {
-            return 0;
+            return null;
         }
         return Integer.parseInt(getText());
     }

@@ -7,6 +7,5 @@ module michka {
     opens Entity to org.hibernate.orm.core;
 
     exports Graphics;
-    exports main;
 
 }
