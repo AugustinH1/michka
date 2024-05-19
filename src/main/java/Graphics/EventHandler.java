@@ -1,5 +1,6 @@
 package Graphics;
 
+import ApiAdressGouv.Properties;
 import Entity.AdresseEntity;
 import Jpa.AdresseRepository;
 
@@ -25,7 +26,7 @@ public interface EventHandler {
         searchProperties(header, resultArea, adresseRepository);
     }
 
-    default void addAddress(Footer footer, AdresseRepository adresseRepository) {
+    default void addAddress(Footer footer, AdresseRepository adresseRepository) throws Exception {
         Integer numRue = footer.getNumRueField().getValue();
         String nomRue = footer.getNomRueField().getText();
         String codePostal = footer.getCodePostalField().getText();
@@ -35,6 +36,20 @@ public interface EventHandler {
             System.out.println("Veuillez remplir tous les champs");
             return;
         }
+
+        SugestedAdressDialog dialog = new SugestedAdressDialog(numRue, nomRue, codePostal, ville);
+        dialog.showAndWait();
+        Properties address = dialog.getSelectedAddress();
+
+        if (address == null) {
+            System.out.println("Aucune adresse sélectionnée");
+            return;
+        }
+
+        numRue = Integer.valueOf(address.getHousenumber());
+        nomRue = address.getStreet();
+        codePostal = address.getPostcode();
+        ville = address.getCity();
 
         adresseRepository.create(new AdresseEntity(numRue, nomRue, codePostal, ville));
 

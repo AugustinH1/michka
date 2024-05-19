@@ -2,6 +2,7 @@ package Graphics;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import utils.NumField;

@@ -45,9 +45,15 @@ public class Fenetre extends Application implements EventHandler {
         primaryStage.show();
     }
 
-    private void eventHandler() {
+    private void eventHandler() throws RuntimeException {
         header.getSearchButton().setOnAction(event -> searchProperties(header, resultArea, adresseRepository));
         header.getResetButton().setOnAction(event -> resetProperties(header, resultArea, adresseRepository));
-        footer.getAddButton().setOnAction(event -> addAddress(footer,adresseRepository));
+        footer.getAddButton().setOnAction(event -> {
+            try {
+                addAddress(footer,adresseRepository);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }
