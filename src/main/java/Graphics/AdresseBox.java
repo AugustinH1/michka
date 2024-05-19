@@ -11,6 +11,7 @@ public class AdresseBox extends HBox {
     private AdresseEntity adresseEntity;
     private Label addressLabel;
     private Button modifyButton;
+    private Button removeButton;
 
     public AdresseBox(AdresseEntity adresseEntity) {
         this.id = adresseEntity.getId();
@@ -28,7 +29,10 @@ public class AdresseBox extends HBox {
         modifyButton = new Button("Modifier");
         modifyButton.setOnAction(event -> {modifyAddress();});
 
-        this.getChildren().addAll(addressLabel, modifyButton);
+        removeButton = new Button("Supprimer");
+        removeButton.setOnAction(event -> {removeAddress();});
+
+        this.getChildren().addAll(addressLabel, modifyButton, removeButton);
     }
 
     private void modifyAddress() {
@@ -36,12 +40,9 @@ public class AdresseBox extends HBox {
         dialog.showAndWait();
     }
 
-    public AdresseEntity getAdresseEntity() {
-        return adresseEntity;
-    }
-
-    public Button getModifyButton() {
-        return modifyButton;
+    private void removeAddress() {
+        AdresseRepository adresseRepository = new AdresseRepository();
+        adresseRepository.delete(adresseEntity);
     }
 }
 
