@@ -1,12 +1,15 @@
 package Graphics;
 
 import Entity.AdresseEntity;
+import Entity.BienEntity;
 import Jpa.AdresseRepository;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+
+import java.util.Objects;
 
 public class AdresseBox extends HBox {
     private AdresseEntity adresseEntity;
@@ -23,11 +26,38 @@ public class AdresseBox extends HBox {
 
 
         addressLabel = new Label();
-        addressLabel.setText(
-                "Numéro de rue: " + adresseEntity.getNumRue()
-                        + ", Nom de rue: " + adresseEntity.getNomRue()
-                        + ", Code postal: " + adresseEntity.getCodePostal()
-                        + ", Ville: " + adresseEntity.getVille());
+        var text = "Numéro de rue: " + adresseEntity.getNumRue()
+                + ", Nom de rue: " + adresseEntity.getNomRue()
+                + ", Code postal: " + adresseEntity.getCodePostal()
+                + ", Ville: " + adresseEntity.getVille();
+
+        if (adresseEntity.getBiens() != null || !adresseEntity.getBiens().isEmpty()) {
+            text += ", Classification: " + adresseEntity.getBiens()
+                        .stream()
+                        .map(BienEntity::getClassification)
+                        .filter(Objects::nonNull)
+                        .findFirst()
+                        .orElse("N/A")
+                    + ", Type de bien: " + adresseEntity.getBiens()
+                        .stream()
+                        .map(BienEntity::getTypeBien)
+                        .filter(Objects::nonNull)
+                        .findFirst()
+                        .orElse("N/A")
+                    + ", Type de chauffage: " + adresseEntity.getBiens()
+                        .stream()
+                        .map(BienEntity::getChauffage)
+                        .filter(Objects::nonNull)
+                        .findFirst()
+                        .orElse("N/A")
+                    + ", Type eau chaude: " + adresseEntity.getBiens()
+                        .stream()
+                        .map(BienEntity::getTypeEauChaude)
+                        .filter(Objects::nonNull)
+                        .findFirst()
+                        .orElse("N/A");
+        }
+        addressLabel.setText(text);
 
         modifyButton = new Button("Modifier");
         modifyButton.setOnAction(event -> modifyAddress());
