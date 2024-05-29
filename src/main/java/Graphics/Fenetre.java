@@ -6,7 +6,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -46,6 +45,7 @@ public class Fenetre extends Application implements EventHandler {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Application Michka");
         primaryStage.show();
+        primaryStage.setMaximized(true);
 
         // Set up the Timeline for periodic refresh
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {

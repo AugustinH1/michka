@@ -29,13 +29,6 @@ public class AdresseEntity {
         //Do not remove, used by JPA
     }
 
-    public AdresseEntity(Integer numRue, String nomRue, String codePostal, String ville) {
-        this.numRue = numRue;
-        this.nomRue = nomRue;
-        this.codePostal = codePostal;
-        this.ville = ville;
-    }
-
     @OneToMany(mappedBy = "adresse")
     private Set<BienEntity> biens = new LinkedHashSet<>();
 
@@ -84,6 +77,15 @@ public class AdresseEntity {
     }
 
     public void setBiens(Set<BienEntity> biens) {
+        this.biens = biens;
+    }
+
+
+    public AdresseEntity(Integer numRue, String nomRue, String codePostal, String ville, Set<BienEntity> biens) {
+        this.numRue = numRue;
+        this.nomRue = nomRue;
+        this.codePostal = codePostal;
+        this.ville = ville;
         this.biens = biens;
     }
 

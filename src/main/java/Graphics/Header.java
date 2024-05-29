@@ -1,8 +1,6 @@
 package Graphics;
 
-import Jpa.AdresseRepository;
-import Jpa.JpaEntityManager;
-import javafx.event.EventHandler;
+
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -10,8 +8,6 @@ import Enum.*;
 import javafx.scene.layout.VBox;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Header extends HBox {
     private TextField searchField;

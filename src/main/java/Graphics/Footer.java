@@ -1,11 +1,13 @@
 package Graphics;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import utils.NumField;
+import Enum.*;
+
+import java.util.Arrays;
 
 public class Footer extends HBox {
 
@@ -13,6 +15,10 @@ public class Footer extends HBox {
     private TextField nomRueField;
     private NumField codePostalField;
     private TextField villeField;
+    private ComboBox<String> typeBienComboBox;
+    private ComboBox<String> typeChauffageComboBox;
+    private ComboBox<String> typeEauChaudeComboBox;
+    private ComboBox<String> classificationComboBox;
     private Button addButton;
 
     public Footer() {
@@ -29,12 +35,49 @@ public class Footer extends HBox {
         villeField = new TextField();
         villeField.setPromptText("Ville");
 
+        typeBienComboBox = new ComboBox<>();
+        typeChauffageComboBox = new ComboBox<>();
+        typeEauChaudeComboBox = new ComboBox<>();
+        classificationComboBox = new ComboBox<>();
+
+
+        //ajouter l'ENUM ClassificationBien
+        Arrays.stream(ClassificationBien.values()).forEach(classification ->
+                classificationComboBox.getItems().add(classification.toString()));
+
+        Arrays.stream(TypeBien.values()).forEach(typeBien ->
+                typeBienComboBox.getItems().add(typeBien.toString()));
+
+        Arrays.stream(TypeChauffage.values()).forEach(typeChauffage ->
+                typeChauffageComboBox.getItems().add(typeChauffage.toString()));
+
+        Arrays.stream(TypeEauChaude.values()).forEach(typeEauChaude ->
+                typeEauChaudeComboBox.getItems().add(typeEauChaude.toString()));
+
         // Création du bouton Ajouter
         addButton = new Button("Ajouter");
 
 
+        Label classificationLabel = new Label("Classification : ");
+        Label typeBienLabel = new Label("Type de bien : ");
+        Label typeChauffageLabel = new Label("Type de chauffage : ");
+        Label typeEauChaudeLabel = new Label("Type d'eau chaude : ");
+
+        VBox classificationBox = new VBox();
+        VBox typeBienBox = new VBox();
+        VBox typeChauffageBox = new VBox();
+        VBox typeEauChaudeBox = new VBox();
+
+        classificationBox.getChildren().addAll(classificationLabel, classificationComboBox);
+        typeBienBox.getChildren().addAll(typeBienLabel, typeBienComboBox);
+        typeChauffageBox.getChildren().addAll(typeChauffageLabel, typeChauffageComboBox);
+        typeEauChaudeBox.getChildren().addAll(typeEauChaudeLabel, typeEauChaudeComboBox);
+
+
         // Ajout des éléments au pied de la fenêtre
-        this.getChildren().addAll(numRueField, nomRueField, codePostalField, villeField, addButton);
+        this.getChildren().addAll(numRueField, nomRueField, codePostalField, villeField,
+                classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox,
+                addButton);
         this.setSpacing(10);
         this.setPadding(new Insets(10));
     }
@@ -58,5 +101,27 @@ public class Footer extends HBox {
     public TextField getVilleField() {
         return villeField;
     }
+
+    public ClassificationBien getClassification() {
+        var classification = classificationComboBox.getValue();
+        return classification == null ? null: ClassificationBien.valueOf(classification);
+    }
+
+    public TypeBien getTypeBien() {
+        var typeBien = typeBienComboBox.getValue();
+        return typeBien == null ? null: TypeBien.valueOf(typeBien);
+    }
+
+    public TypeChauffage getTypeChauffage() {
+        var typeChauffage = typeChauffageComboBox.getValue();
+        return typeChauffage == null ? null: TypeChauffage.valueOf(typeChauffage);
+    }
+
+    public TypeEauChaude getTypeEauChaude() {
+        var typeEauChaude = typeEauChaudeComboBox.getValue();
+        return typeEauChaude == null ? null: TypeEauChaude.valueOf(typeEauChaude);
+    }
+
+
 }
 

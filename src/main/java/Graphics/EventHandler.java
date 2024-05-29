@@ -2,7 +2,10 @@ package Graphics;
 
 import ApiAdressGouv.Properties;
 import Entity.AdresseEntity;
+import Entity.BienEntity;
 import Jpa.AdresseRepository;
+
+import java.util.Set;
 
 public interface EventHandler {
     default void searchProperties(Header header, ResultArea resultArea, AdresseRepository adresseRepository) {
@@ -51,7 +54,15 @@ public interface EventHandler {
         codePostal = address.getPostcode();
         ville = address.getCity();
 
-        adresseRepository.create(new AdresseEntity(numRue, nomRue, codePostal, ville));
+
+        //String typeEauChaude, String chauffage, String typeBien String classification
+        var typeEauChaude = footer.getTypeEauChaude() == null ? null : footer.getTypeEauChaude().toString();
+        var chauffage = footer.getTypeChauffage() == null ? null : footer.getTypeChauffage().toString();
+        var typeBien = footer.getTypeBien() == null ? null : footer.getTypeBien().toString();
+        var classification = footer.getClassification() == null ? null : footer.getClassification().toString();
+
+        var bien = new BienEntity(typeEauChaude, chauffage, typeBien, classification);
+        adresseRepository.create(new AdresseEntity(numRue, nomRue, codePostal, ville, Set.of(bien)));
 
         System.out.println("Données saisies : Numéro de rue : " + numRue + ", Nom de rue : " + nomRue +
                 ", Code postal : " + codePostal + ", Ville : " + ville);

@@ -1,6 +1,7 @@
 package Graphics;
 
 import Entity.AdresseEntity;
+import Entity.BienEntity;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,7 +25,7 @@ public class ResultArea extends ScrollPane {
         resultBox.getChildren().clear(); // Effacer les résultats précédents
 
         resultList.forEach(adresse -> {
-            AdresseBox adresseBox = new AdresseBox(adresse);
+            AdresseBox adresseBox = new AdresseBox(adresse, this);
             resultBox.getChildren().add(adresseBox);
         });
     }

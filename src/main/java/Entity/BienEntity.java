@@ -51,6 +51,17 @@ public class BienEntity {
     @OneToMany(mappedBy = "numBien")
     private Set<PieceEntity> pieces = new LinkedHashSet<>();
 
+    public BienEntity() {
+        //Do not remove, used by JPA
+    }
+
+    public BienEntity(String typeEauChaude, String chauffage, String typeBien, String classification) {
+        this.typeEauChaude = typeEauChaude;
+        this.chauffage = chauffage;
+        this.typeBien = typeBien;
+        this.classification = classification;;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -145,6 +156,14 @@ public class BienEntity {
 
     public void setPieces(Set<PieceEntity> pieces) {
         this.pieces = pieces;
+    }
+
+    public AdresseEntity getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(AdresseEntity adresse) {
+        this.adresse = adresse;
     }
 
 }
