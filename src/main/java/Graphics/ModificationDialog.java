@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import Enum.*;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ModificationDialog extends Stage {
     private static final AdresseRepository adresseRepository = new AdresseRepository();
@@ -33,7 +34,7 @@ public class ModificationDialog extends Stage {
         this.adresseEntity = adresseEntity;
 
         // Création des champs de texte pour la modification
-        numRueField = new TextField(String.valueOf(adresseEntity.getNumRue()));
+        numRueField = new TextField(adresseEntity.getNumRue() == null ? null : String.valueOf(adresseEntity.getNumRue()));
         nomRueField = new TextField(adresseEntity.getNomRue());
         codePostalField = new TextField(adresseEntity.getCodePostal());
         villeField = new TextField(adresseEntity.getVille());
@@ -108,7 +109,7 @@ public class ModificationDialog extends Stage {
     }
 
     private void validerModification() {
-        adresseEntity.setNumRue(Integer.parseInt(numRueField.getText()));
+        adresseEntity.setNumRue(numRueField.getText() == null || Objects.equals(numRueField.getText(), "") ? null : Integer.parseInt(numRueField.getText()));
         adresseEntity.setNomRue(nomRueField.getText());
         adresseEntity.setCodePostal(codePostalField.getText());
         adresseEntity.setVille(villeField.getText());
