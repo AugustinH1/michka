@@ -2,11 +2,14 @@ package Graphics;
 
 import Jpa.AdresseRepository;
 import Jpa.JpaEntityManager;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class Fenetre extends Application implements EventHandler {
@@ -43,6 +46,13 @@ public class Fenetre extends Application implements EventHandler {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Application Michka");
         primaryStage.show();
+
+        // Set up the Timeline for periodic refresh
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            searchProperties(header, resultArea, adresseRepository);
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     private void eventHandler() throws RuntimeException {
