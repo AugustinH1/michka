@@ -6,9 +6,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ApiDataAcces {
-
-
-
     public static String requestObject(URL url, String methode) throws Exception {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod(methode);

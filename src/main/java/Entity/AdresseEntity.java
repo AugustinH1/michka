@@ -76,10 +76,6 @@ public class AdresseEntity {
         return biens;
     }
 
-    public void setBiens(Set<BienEntity> biens) {
-        this.biens = biens;
-    }
-
 
     public AdresseEntity(Integer numRue, String nomRue, String codePostal, String ville, Set<BienEntity> biens) {
         this.numRue = numRue;

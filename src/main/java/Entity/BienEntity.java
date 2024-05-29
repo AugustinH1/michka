@@ -62,38 +62,6 @@ public class BienEntity {
         this.classification = classification;;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDate getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(LocalDate dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public Integer getSurface() {
-        return surface;
-    }
-
-    public void setSurface(Integer surface) {
-        this.surface = surface;
-    }
-
-    public Integer getNbPiece() {
-        return nbPiece;
-    }
-
-    public void setNbPiece(Integer nbPiece) {
-        this.nbPiece = nbPiece;
-    }
-
     public String getTypeEauChaude() {
         return typeEauChaude;
     }
@@ -118,48 +86,12 @@ public class BienEntity {
         this.typeBien = typeBien;
     }
 
-    public Integer getEtage() {
-        return etage;
-    }
-
-    public void setEtage(Integer etage) {
-        this.etage = etage;
-    }
-
-    public Integer getNumLogement() {
-        return numLogement;
-    }
-
-    public void setNumLogement(Integer numLogement) {
-        this.numLogement = numLogement;
-    }
-
     public String getClassification() {
         return classification;
     }
 
     public void setClassification(String classification) {
         this.classification = classification;
-    }
-
-    public Set<AnnexeEntity> getAnnexes() {
-        return annexes;
-    }
-
-    public void setAnnexes(Set<AnnexeEntity> annexes) {
-        this.annexes = annexes;
-    }
-
-    public Set<PieceEntity> getPieces() {
-        return pieces;
-    }
-
-    public void setPieces(Set<PieceEntity> pieces) {
-        this.pieces = pieces;
-    }
-
-    public AdresseEntity getAdresse() {
-        return adresse;
     }
 
     public void setAdresse(AdresseEntity adresse) {

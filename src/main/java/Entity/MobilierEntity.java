@@ -20,36 +20,4 @@ public class MobilierEntity {
     @Column(name = "nature")
     private String nature;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public PieceEntity getIdPiece() {
-        return idPiece;
-    }
-
-    public void setIdPiece(PieceEntity idPiece) {
-        this.idPiece = idPiece;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getNature() {
-        return nature;
-    }
-
-    public void setNature(String nature) {
-        this.nature = nature;
-    }
-
 }

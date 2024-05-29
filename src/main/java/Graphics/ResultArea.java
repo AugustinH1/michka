@@ -1,12 +1,8 @@
 package Graphics;
 
 import Entity.AdresseEntity;
-import Entity.BienEntity;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
