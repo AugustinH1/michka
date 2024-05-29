@@ -46,7 +46,7 @@ public interface EventHandler {
             return;
         }
 
-        numRue = Integer.valueOf(address.getHousenumber());
+        numRue =  address.getHousenumber() == null ? null : Integer.valueOf(address.getHousenumber());
         nomRue = address.getStreet();
         codePostal = address.getPostcode();
         ville = address.getCity();
