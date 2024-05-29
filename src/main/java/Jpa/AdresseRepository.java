@@ -54,6 +54,10 @@ public class AdresseRepository extends JpaEntityManager {
 
     public void update(AdresseEntity adresse) {
         transaction.begin();
+        adresse.getBiens().forEach(bien -> {
+            bien.setAdresse(adresse);
+            entityManager.merge(bien);
+        });
         entityManager.merge(adresse);
         transaction.commit();
     }
