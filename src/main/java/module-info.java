@@ -9,5 +9,6 @@ module michka {
     opens ApiAdressGouv to com.google.gson;
 
     exports Graphics;
+    exports Dao;
 
 }

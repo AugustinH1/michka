@@ -1,17 +1,21 @@
 package Graphics;
 
+import Dao.DaoAdresse;
 import Entity.AdresseEntity;
 import Entity.BienEntity;
-import Jpa.AdresseRepository;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import jpaDao.JpaDaoAdresse;
+import jpaDao.JpaDaoBien;
 
 import java.util.Objects;
 
 public class AdresseBox extends HBox {
+    private static final DaoAdresse adresseManager = new JpaDaoAdresse();
+    private static final JpaDaoBien bienManager = new JpaDaoBien();
     private AdresseEntity adresseEntity;
     private Label addressLabel;
     private Button modifyButton;
@@ -78,8 +82,8 @@ public class AdresseBox extends HBox {
     }
 
     private void removeAddress() {
-        AdresseRepository adresseRepository = new AdresseRepository();
-        adresseRepository.delete(adresseEntity);
+        adresseEntity.getBiens().forEach(bienManager::delete);
+        adresseManager.delete(adresseEntity);
     }
 }
 

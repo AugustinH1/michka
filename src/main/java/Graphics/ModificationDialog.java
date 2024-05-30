@@ -1,7 +1,8 @@
 package Graphics;
 
+import Dao.DaoAdresse;
+import Dao.DaoBien;
 import Entity.AdresseEntity;
-import Jpa.AdresseRepository;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,12 +13,15 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import Enum.*;
+import jpaDao.JpaDaoAdresse;
+import jpaDao.JpaDaoBien;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 public class ModificationDialog extends Stage {
-    private static final AdresseRepository adresseRepository = new AdresseRepository();
+    private static final DaoAdresse adresseManager = new JpaDaoAdresse();
+    private static final DaoBien bienManager = new JpaDaoBien();
 
     private AdresseEntity adresseEntity;
     private TextField numRueField;
@@ -120,8 +124,8 @@ public class ModificationDialog extends Stage {
             bien.setTypeEauChaude(typeEauChaudeComboBox.getValue());
         });
 
-
-        adresseRepository.update(adresseEntity);
+        adresseEntity.getBiens().forEach(bienManager::update);
+        adresseManager.update(adresseEntity);
 
         close();
     }
