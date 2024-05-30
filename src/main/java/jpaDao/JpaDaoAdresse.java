@@ -1,23 +1,15 @@
-package Jpa;
+package jpaDao;
 
+import Dao.DaoAdresse;
 import Entity.AdresseEntity;
 
 import java.util.List;
 
 
-public class AdresseRepository extends JpaEntityManager {
+public class JpaDaoAdresse extends JpaDao<AdresseEntity> implements DaoAdresse {
 
-    public void create(AdresseEntity adresse) {
-        transaction.begin();
-        adresse.getBiens().forEach(bien -> {
-            bien.setAdresse(adresse);
-            entityManager.persist(bien);
-        });
 
-        entityManager.persist(adresse);
-        transaction.commit();
-    }
-
+    @Override
     public List<AdresseEntity> findBySearchCriteria(String searchText, String classification, String typeBien, String typeChauffage, String typeEauChaude) {
         var isSearchTextEmpty = searchText.isEmpty();
         var isClassificationEmpty = classification == null;
@@ -43,29 +35,11 @@ public class AdresseRepository extends JpaEntityManager {
         );
 
         return entityManager.createQuery(querry, AdresseEntity.class)
-                    .setParameter("searchText", "%" + searchText + "%")
-                    .setParameter("classification", classification)
-                    .setParameter("typeBien", typeBien)
-                    .setParameter("typeChauffage", typeChauffage)
-                    .setParameter("typeEauChaude", typeEauChaude)
+                .setParameter("searchText", "%" + searchText + "%")
+                .setParameter("classification", classification)
+                .setParameter("typeBien", typeBien)
+                .setParameter("typeChauffage", typeChauffage)
+                .setParameter("typeEauChaude", typeEauChaude)
                 .getResultList();
-
-    }
-
-    public void update(AdresseEntity adresse) {
-        transaction.begin();
-        adresse.getBiens().forEach(bien -> {
-            bien.setAdresse(adresse);
-            entityManager.merge(bien);
-        });
-        entityManager.merge(adresse);
-        transaction.commit();
-    }
-
-    public void delete(AdresseEntity adresse) {
-        transaction.begin();
-        adresse.getBiens().forEach(entityManager::remove);
-        entityManager.remove(adresse);
-        transaction.commit();
     }
 }

@@ -1,7 +1,6 @@
 package Graphics;
 
-import Jpa.AdresseRepository;
-import Jpa.JpaEntityManager;
+import Dao.DaoAdresse;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -9,11 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import jpaDao.JpaDaoAdresse;
 
 
 public class Fenetre extends Application implements EventHandler {
-    private static final JpaEntityManager jpaEntityManager = new JpaEntityManager();
-    private static final AdresseRepository adresseRepository = new AdresseRepository();
+    private static final DaoAdresse adresseManager = new JpaDaoAdresse();
 
     private Header header;
     private ResultArea resultArea;
@@ -21,7 +20,7 @@ public class Fenetre extends Application implements EventHandler {
 
     public static void main(String[] args) {
         launch(args);
-        jpaEntityManager.close();
+        adresseManager.close();
     }
 
     @Override
@@ -31,7 +30,7 @@ public class Fenetre extends Application implements EventHandler {
         header = new Header();
         footer = new Footer();
 
-        searchProperties(header, resultArea, adresseRepository);
+        searchProperties(header, resultArea, adresseManager);
         eventHandler();
 
         // Création de la structure de la fenêtre
@@ -49,18 +48,18 @@ public class Fenetre extends Application implements EventHandler {
 
         // Set up the Timeline for periodic refresh
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            searchProperties(header, resultArea, adresseRepository);
+            searchProperties(header, resultArea, adresseManager);
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
 
     private void eventHandler() throws RuntimeException {
-        header.getSearchButton().setOnAction(event -> searchProperties(header, resultArea, adresseRepository));
-        header.getResetButton().setOnAction(event -> resetProperties(header, resultArea, adresseRepository));
+        header.getSearchButton().setOnAction(event -> searchProperties(header, resultArea, adresseManager));
+        header.getResetButton().setOnAction(event -> resetProperties(header, resultArea, adresseManager));
         footer.getAddButton().setOnAction(event -> {
             try {
-                addAddress(footer,adresseRepository);
+                addAddress(footer,adresseManager);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
