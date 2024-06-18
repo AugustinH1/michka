@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import utils.NumField;
 import Enum.*;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class Footer extends HBox {
@@ -87,12 +88,12 @@ public class Footer extends HBox {
             VBox.setMargin(vBox, elementMargin);
         }
 
-
+        TitledPane titledPane = new TitledPane("Ajouter un bien",
+                new HBox(numRueBox, nomRueBox, codePostalBox, villeBox, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox, addButtonBox));
+        titledPane.setCollapsible(false);
 
         // Ajout des éléments au pied de la fenêtre
-        this.getChildren().addAll(numRueBox, nomRueBox, codePostalBox, villeBox,
-                classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox,
-                addButtonBox);
+        this.getChildren().add(titledPane);
         this.setSpacing(10);
         this.setPadding(new Insets(10));
     }
