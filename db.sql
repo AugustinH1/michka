@@ -1,57 +1,60 @@
-CREATE TABLE `Bien` (
-                        `id` int PRIMARY KEY AUTO_INCREMENT,
-                        `date_creation` date,
-                        `surface` int,
-                        `nbPiece` int,
-                        `type_eau_chaude` varchar(255),
-                        `chauffage` varchar(255),
-                        `type_bien` varchar(255),
-                        `id_adresse` int,
-                        `classification` varchar(255)
-);
+create table adresse
+(
+    id          int auto_increment,
+    num_rue     int          null,
+    nom_rue     varchar(255) null,
+    code_postal varchar(255) null,
+    ville       varchar(255) null
+)
+    comment 'Table ''michka.adresse'' doesn''t exist in engine';
 
-CREATE TABLE `Annexe` (
-                          `id` int PRIMARY KEY AUTO_INCREMENT,
-                          `num_bien` int,
-                          `surface` int,
-                          `num_annexe` int,
-                          `nb_piece` int,
-                          `description` varchar(255)
-);
+create table annexe
+(
+    id          int auto_increment,
+    num_bien    int          null,
+    surface     int          null,
+    num_annexe  int          null,
+    nb_piece    int          null,
+    description varchar(255) null
+)
+    comment 'Table ''michka.annexe'' doesn''t exist in engine';
 
-CREATE TABLE `Piece` (
-                         `id` int PRIMARY KEY AUTO_INCREMENT,
-                         `num_bien` int,
-                         `id_affectation` int,
-                         `description` varchar(255),
-                         `surface` int,
-                         `nb_murs` int,
-                         `nb_portes` int,
-                         `nb_fenetre` int,
-                         `affectation_piece` varchar(255)
-);
+create table bien
+(
+    id              int auto_increment,
+    date_creation   date         null,
+    surface         int          null,
+    nbPiece         int          null,
+    type_eau_chaude varchar(255) null,
+    chauffage       varchar(255) null,
+    type_bien       varchar(255) null,
+    id_adresse      int          null,
+    classification  varchar(255) null,
+    etage           int          null,
+    num_logement    int          null
+)
+    comment 'Table ''michka.bien'' doesn''t exist in engine';
 
-CREATE TABLE `Mobilier` (
-                            `id` int PRIMARY KEY AUTO_INCREMENT,
-                            `id_piece` int,
-                            `description` varchar(255),
-                            `nature` varchar(255)
-);
+create table mobilier
+(
+    id          int auto_increment,
+    id_piece    int          null,
+    description varchar(255) null,
+    nature      varchar(255) null
+)
+    comment 'Table ''michka.mobilier'' doesn''t exist in engine';
 
-CREATE TABLE `Adresse` (
-                           `id` int PRIMARY KEY AUTO_INCREMENT,
-                           `num_rue` int,
-                           `nom_rue` varchar(255),
-                           `code_postal` varchar(255),
-                           `ville` varchar(255),
-                           `etage` int,
-                           `num_logement` int
-);
+create table piece
+(
+    id                int auto_increment,
+    num_bien          int          null,
+    id_affectation    int          null,
+    description       varchar(255) null,
+    surface           int          null,
+    nb_murs           int          null,
+    nb_portes         int          null,
+    nb_fenetre        int          null,
+    affectation_piece varchar(255) null
+)
+    comment 'Table ''michka.piece'' doesn''t exist in engine';
 
-ALTER TABLE `Annexe` ADD FOREIGN KEY (`num_bien`) REFERENCES `Bien` (`id`);
-
-ALTER TABLE `Piece` ADD FOREIGN KEY (`num_bien`) REFERENCES `Bien` (`id`);
-
-ALTER TABLE `Mobilier` ADD FOREIGN KEY (`id_piece`) REFERENCES `Piece` (`id`);
-
-ALTER TABLE `Bien` ADD FOREIGN KEY (`id_adresse`) REFERENCES `Adresse` (`id`);
