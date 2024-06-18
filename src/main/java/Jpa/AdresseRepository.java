@@ -64,7 +64,15 @@ public class AdresseRepository extends JpaEntityManager {
 
     public void delete(AdresseEntity adresse) {
         transaction.begin();
-        adresse.getBiens().forEach(entityManager::remove);
+
+        adresse = entityManager.merge(adresse);
+
+        adresse.getBiens().forEach(bien -> {
+            if(!entityManager.contains(bien))
+                bien = entityManager.merge(bien);
+            entityManager.remove(bien);
+        });
+
         entityManager.remove(adresse);
         transaction.commit();
     }
