@@ -26,7 +26,7 @@ public class Header extends HBox {
         typeEauChaudeComboBox = new ComboBox<>();
         classificationComboBox = new ComboBox<>();
 
-        searchField.setPromptText("Rechercher");
+        searchField.setPromptText("Rechercher par ville");
         //ajouter l'ENUM ClassificationBien
         Arrays.stream(ClassificationBien.values()).forEach(classification ->
                 classificationComboBox.getItems().add(classification.toString()));
