@@ -88,8 +88,10 @@ public class Footer extends HBox {
             VBox.setMargin(vBox, elementMargin);
         }
 
-        TitledPane titledPane = new TitledPane("Ajouter un bien",
-                new HBox(numRueBox, nomRueBox, codePostalBox, villeBox, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox, addButtonBox));
+        HBox content = new HBox(numRueBox, nomRueBox, codePostalBox, villeBox, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox, addButtonBox);
+        content.setSpacing(10);
+
+        TitledPane titledPane = new TitledPane("Ajouter un bien", content);
         titledPane.setCollapsible(false);
 
         // Ajout des éléments au pied de la fenêtre

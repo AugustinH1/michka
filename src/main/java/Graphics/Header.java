@@ -64,7 +64,10 @@ public class Header extends HBox {
         VBox searchButtonBox = new VBox(new Label(""), searchButton);
         VBox resetButtonBox = new VBox(new Label(""), resetButton);
 
-        TitledPane titledPane = new TitledPane("Rechercher", new HBox(searchFieldBox, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox, searchButtonBox, resetButtonBox));
+        HBox content = new HBox(searchFieldBox, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox, searchButtonBox, resetButtonBox);
+        content.setSpacing(10);
+
+        TitledPane titledPane = new TitledPane("Rechercher", content);
         titledPane.setCollapsible(false);
 
         this.getChildren().add(titledPane);
