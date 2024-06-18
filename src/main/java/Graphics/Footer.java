@@ -73,11 +73,26 @@ public class Footer extends HBox {
         typeChauffageBox.getChildren().addAll(typeChauffageLabel, typeChauffageComboBox);
         typeEauChaudeBox.getChildren().addAll(typeEauChaudeLabel, typeEauChaudeComboBox);
 
+        // Création des VBox pour l'alignement vertical
+        VBox numRueBox = new VBox(new Label(""), numRueField);
+        VBox nomRueBox = new VBox(new Label(""), nomRueField);
+        VBox codePostalBox = new VBox(new Label(""), codePostalField);
+        VBox villeBox = new VBox(new Label(""), villeField);
+        VBox addButtonBox = new VBox(new Label(""), addButton);
+
+        // Ajouter des marges pour améliorer l'espacement
+        Insets elementMargin = new Insets(5);
+        VBox[] vBoxes = {numRueBox, nomRueBox, codePostalBox, villeBox, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox};
+        for (VBox vBox : vBoxes) {
+            VBox.setMargin(vBox, elementMargin);
+        }
+
+
 
         // Ajout des éléments au pied de la fenêtre
-        this.getChildren().addAll(numRueField, nomRueField, codePostalField, villeField,
+        this.getChildren().addAll(numRueBox, nomRueBox, codePostalBox, villeBox,
                 classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox,
-                addButton);
+                addButtonBox);
         this.setSpacing(10);
         this.setPadding(new Insets(10));
     }

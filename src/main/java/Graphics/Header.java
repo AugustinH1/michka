@@ -50,6 +50,7 @@ public class Header extends HBox {
         VBox typeChauffageBox = new VBox();
         VBox typeEauChaudeBox = new VBox();
 
+
         classificationBox.getChildren().addAll(classificationLabel, classificationComboBox);
         typeBienBox.getChildren().addAll(typeBienLabel, typeBienComboBox);
         typeChauffageBox.getChildren().addAll(typeChauffageLabel, typeChauffageComboBox);
@@ -59,8 +60,11 @@ public class Header extends HBox {
         searchButton = new Button("Rechercher");
         resetButton = new Button("Réinitialiser");
 
+        VBox searchFieldBox = new VBox(new Label(""), searchField);
+        VBox searchButtonBox = new VBox(new Label(""), searchButton);
+        VBox resetButtonBox = new VBox(new Label(""), resetButton);
 
-        this.getChildren().addAll(searchField, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox, searchButton, resetButton);
+        this.getChildren().addAll(searchFieldBox, classificationBox, typeBienBox, typeChauffageBox, typeEauChaudeBox, searchButtonBox, resetButtonBox);
         this.setSpacing(10);
         this.setPadding(new Insets(10));
     }
