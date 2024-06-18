@@ -6,9 +6,9 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 public class JpaEntityManager {
-    protected static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-    protected static final EntityManager entityManager = entityManagerFactory.createEntityManager();
-    protected static final EntityTransaction transaction = entityManager.getTransaction();
+    protected final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+    protected final EntityManager entityManager = entityManagerFactory.createEntityManager();
+    protected final EntityTransaction transaction = entityManager.getTransaction();
 
     public void close(){
         entityManager.close();
