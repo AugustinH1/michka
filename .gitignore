@@ -37,3 +37,6 @@ build/
 ### Mac OS ###
 .DS_Store
 /.idea/
+
+### persistence.xml ###
+META-INF/persistence.xml
