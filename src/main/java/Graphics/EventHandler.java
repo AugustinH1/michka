@@ -44,15 +44,12 @@ public interface EventHandler {
         dialog.showAndWait();
         Properties address = dialog.getSelectedAddress();
 
-        if (address == null) {
-            System.out.println("Aucune adresse sélectionnée");
-            return;
+        if (address != null) {
+            numRue =  address.getHousenumber() == null ? null : Integer.valueOf(address.getHousenumber());
+            nomRue = address.getStreet();
+            codePostal = address.getPostcode();
+            ville = address.getCity();
         }
-
-        numRue =  address.getHousenumber() == null ? null : Integer.valueOf(address.getHousenumber());
-        nomRue = address.getStreet();
-        codePostal = address.getPostcode();
-        ville = address.getCity();
 
 
         //String typeEauChaude, String chauffage, String typeBien String classification
