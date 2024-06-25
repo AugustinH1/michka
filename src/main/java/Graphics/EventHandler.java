@@ -71,5 +71,10 @@ public interface EventHandler {
         footer.getNomRueField().clear();
         footer.getCodePostalField().clear();
         footer.getVilleField().clear();
+        footer.getTypeEauChaudeComboBox().getSelectionModel().clearSelection();
+        footer.getTypeChauffageComboBox().getSelectionModel().clearSelection();
+        footer.getTypeBienComboBox().getSelectionModel().clearSelection();
+        footer.getClassificationComboBox().getSelectionModel().clearSelection();
+
     }
 }

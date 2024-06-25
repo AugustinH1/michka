@@ -140,6 +140,22 @@ public class Footer extends HBox {
         return typeEauChaude == null ? null: TypeEauChaude.valueOf(typeEauChaude);
     }
 
+    public ComboBox<String> getClassificationComboBox() {
+        return classificationComboBox;
+    }
+
+    public ComboBox<String> getTypeBienComboBox() {
+        return typeBienComboBox;
+    }
+
+    public ComboBox<String> getTypeChauffageComboBox() {
+        return typeChauffageComboBox;
+    }
+
+    public ComboBox<String> getTypeEauChaudeComboBox() {
+        return typeEauChaudeComboBox;
+    }
+
 
 }
 
